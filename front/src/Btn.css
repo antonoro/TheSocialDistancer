@@ -1,0 +1,61 @@
+.ButtonStyle {
+    text-align: center;
+  }
+
+#loginbtn{
+
+  margin-bottom: 1em;
+
+}
+
+#signupbtn{
+  margin-bottom: 1em;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus,
+.btn-primary:active:focus {
+    background-color: 	#5aade8 !important;
+    border-color: #5aade8 !important;
+    font-size: calc(10px + 1vmin);
+    
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:visited,
+.btn-secondary:focus,
+.btn-secondary:active:focus {
+    background-color: 		#85cc4e !important;
+    border-color: #85cc4e !important;
+    font-size: calc(10px + 1vmin);
+}
+
+.btn-info,
+.btn-info:hover,
+.btn-info:active,
+.btn-info:visited,
+.btn-info:focus,
+.btn-info:active:focus {
+    background-color: 		#9400D3 !important;
+    border-color: #9400D3 !important;
+    font-size: calc(10px + 1vmin);
+}
+
+.Btn-header {
+  font-family: 'Montserrat Alternates', sans-serif;
+  background-color: whitesmoke;
+  min-height: 50vh;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 1vmin);
+  color: black;
+  padding-top: 2em;
+  padding-right: 4em;
+  padding-left: 4em;
+  }
+  

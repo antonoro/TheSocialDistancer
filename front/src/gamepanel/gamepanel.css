@@ -1,0 +1,28 @@
+#actionsrow {
+
+    min-height: 30vh;
+
+}
+
+#linechart {
+    min-height: 70vh;
+}
+
+
+#startstoprow {
+
+    min-height: 30vh;
+
+}
+
+.gamepanel {
+    background-color: whitesmoke;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 1vmin);
+    color: black;
+    padding-top: 2em;
+    padding-right: 4em;
+    padding-left: 4em;
+}

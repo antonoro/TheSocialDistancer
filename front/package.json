@@ -1,0 +1,45 @@
+{
+  "name": "thebookexchanger",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/runtime": "^7.9.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "boostrap": "^2.0.0",
+    "bootstrap": "^4.4.1",
+    "d3": "^5.15.1",
+    "dotenv": "^8.2.0",
+    "get-google-fonts": "^1.2.2",
+    "moment": "^2.24.0",
+    "passport-google-oauth": "^2.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "typeface-dosis": "^1.1.4",
+    "typeface-montserrat-alternates": "0.0.72"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:3001"
+}
