@@ -40,7 +40,7 @@ yarn install
 
 ### 2.3: How to launch
 
-I used nodemon to relaunch our project after every change, but using the standard npm start command is fine as well.
+I added nodemon to relaunch the project after every change, so using yarn start works fine.
 
 ```
 yarn start
