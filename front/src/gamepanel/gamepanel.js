@@ -9,9 +9,14 @@ class GamePanel extends React.Component{
         this.state = {
             datadays: 0,
             datavalue: 0,
+            datamax: 0,
+            dailycases: 0,
+            daysvaccine: 100,
+            oldvalue: 0,
             countOn: false,
             resetGraph: false,
-            gameEnd: false
+            gameEnd: false, 
+            slope: 0.2
         };
     }
 
@@ -20,13 +25,32 @@ class GamePanel extends React.Component{
     }
 
     tick = () => {
+        const oldvalue = this.state.datavalue;
         this.setState({
-            datavalue: Number((1 + this.state.datavalue + this.state.datavalue*0.3).toFixed(0)),
+            oldvalue: this.state.datavalue,
+            datavalue: (1 + this.state.datavalue*(1+this.state.slope)),
         });
 
-        if(this.state.datavalue > Number(7000000000))
+        this.setState({
+            dailycases: this.state.datavalue - this.state.oldvalue,
+        });
+
+        if(this.state.datavalue > this.state.datamax)
+        {
+            this.setState({
+                datamax: this.state.datavalue,
+            });
+        }
+
+        if(this.state.daysvaccine > 0)
+        {
+            this.setState({daysvaccine: this.state.daysvaccine - 1});
+        }
+
+        if(this.state.datavalue > Number(20000000))
         {
             clearInterval(this.interval);
+            alert("That's the worst epidemic in World's history ; that's why Public Health measures are important!");
             this.setState({
                 gameEnd: true
             });
@@ -70,6 +94,10 @@ class GamePanel extends React.Component{
         this.setState({
             datadays: 0,
             datavalue: 0,
+            daysvaccine: 100,
+            dailycases: 0,
+            oldvalue: 0,
+            datamax: 0,
             resetGraph: true,
             countOn: false,
             gameEnd: false
@@ -77,67 +105,47 @@ class GamePanel extends React.Component{
     };
 
     washHands = () => {
-        if(this.state.datavalue - 3 > 0)
-        {
-            this.setState(
-                {datavalue: this.state.datavalue - 3}
-            );
-        }
-        else{
-            this.setState(
-                {datavalue: 0}
-            );
-        }
+        this.setState(
+            {slope: 0.98*this.state.slope}
+        );
     }
 
     stayHome = () => {
-        if(this.state.datavalue - 5 > 0)
-        {
-            this.setState(
-                {datavalue: this.state.datavalue - 5}
-            );
-        }
-        else{
-            this.setState(
-                {datavalue: 0}
-            );
-        }
+      
+        this.setState(
+            {slope: 0.92*this.state.slope}
+        );
 
     }
 
     wearMask = () => {
-        if(this.state.datavalue - 2 > 0)
-        {
-            this.setState(
-                {datavalue: this.state.datavalue - 2}
-            );
-        }
-        else
-        {
-            this.setState(
-                {datavalue: 0}
-            );
-        }
-        
+        this.setState(
+            {slope: 0.96*this.state.slope}
+        );
+         
     }
 
     vaccine = () => {
-        if(this.state.datavalue - 100 > 0){
-            this.setState(
-                {datavalue: this.state.datavalue - 100}
-            );
-        }
-        else
-        {
-            this.setState(
-                {datavalue: 0}
-            );
-        }
+        this.setState(
+            {slope: this.state.slope - 0.005}
+        );
     }
 
     render(){
         return(
         <div className="gamepanel">
+            <div id="#datainfo" className="row justify-content-center">
+               
+                <div className="col-6 text-center">
+                    <label>Maximum COVID-19 cases :  </label>
+                    <output type="number">{Number(this.state.datamax).toFixed(0)}</output>
+                </div>
+                <div className="col-6 text-center">
+                    <label>Death toll :  </label>
+                    <output type="number">{Number(this.state.datamax / 20).toFixed(0)}</output>
+                </div>
+                
+            </div>
             <div id="#linechart" className="row justify-content-center"><LineChart name={this.state.datadays} value={this.state.datavalue} resetState={this.state.resetGraph}/></div>
 
             <div id="#datainfo" className="row justify-content-center">
@@ -145,12 +153,29 @@ class GamePanel extends React.Component{
 
                 </div>
                 <div className="col-5 text-center">
-                    <label>Daily new COVID-19 cases :  </label>
-                    <output type="number">{this.state.datavalue}</output>
+                    <label>Active COVID-19 cases :  </label>
+                    <output type="number">{Number(this.state.datavalue).toFixed(0)}</output>
                 </div>
                 <div className="col-5 text-center">
                     <label>Days since start of epidemic :  </label>
                     <output type="number">{this.state.datadays}</output>
+                </div>
+                <div className="col-1">
+
+                </div>
+            </div>
+
+            <div id="#datainfo" className="row justify-content-center">
+                <div className="col-1">
+
+                </div>
+                <div className="col-5 text-center">
+                    <label>Daily new COVID-19 cases :  </label>
+                    <output type="number">{Number(this.state.dailycases).toFixed(0)}</output>
+                </div>
+                <div className="col-5 text-center">
+                    <label>Days remaining until vaccine available :  </label>
+                    <output type="number">{this.state.daysvaccine}</output>
                 </div>
                 <div className="col-1">
 
@@ -193,7 +218,11 @@ class GamePanel extends React.Component{
                         <button onClick={this.washHands} className="btn btn-warning btn-md btn-block">Wash hands</button>
                     </div>
                     <div className="col-3">
-                        <button onClick={this.vaccine} className="btn btn-info btn-md btn-block">Vaccine</button>
+                        { this.state.daysvaccine > 0 ?  
+                            <button  onClick={this.vaccine} className="btn btn-dark btn-md btn-block" disabled>Vaccine</button>
+                        :
+                            <button  onClick={this.vaccine} className="btn btn-info btn-md btn-block">Vaccine</button>
+                        }
                     </div>
             </div>
         </div>

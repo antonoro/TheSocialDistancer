@@ -16,7 +16,7 @@ This project is developed mainly using Javascript, HTML and CSS. Express.js was 
 
 Deployed web version:
 
-This app is deployed at this <a href="/">NEED TO UPDATE LINK</a>.
+This app is deployed at this <a href="https://thesocialdistancer.herokuapp.com">link</a>.
 
 
 Web dev version:

@@ -94,6 +94,10 @@ class LineChart extends React.Component {
                 >
                 <g transform={`translate(${margins.left}, ${margins.top})`}>
                     <XYAxis {...{ xScale, yScale, height, ticks, t }} />
+                    <Line data={data} xScale={xScale} yScale={yScale} width={width} height={height} />
+                </g>
+                <g transform={`translate(${margins.left}, ${margins.top})`}>
+                    <XYAxis {...{ xScale, yScale, height, ticks, t }} />
                     <Line data={data} xScale={xScale} yScale={yScale} lineGenerator={lineGenerator} width={width} height={height} />
                 </g>
                 </svg>
