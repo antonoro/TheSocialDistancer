@@ -7,6 +7,11 @@ body {
 
 }
 
+.rotated {
+  font-size: calc(7px + 1vmin);
+  transform: rotate(-90deg);
+}
+
 #toplogo {
   height: 8vmin;
 }
@@ -27,7 +32,7 @@ body {
   font-family: 'Dosis', sans-serif;
   font-size: calc(10px + 2vmin);
   background-color: whitesmoke;
-  max-height: 35vh;
+  min-height: 35vh;
   min-width: 100vw;
   display: flex;
   flex-direction: column;
@@ -68,4 +73,9 @@ span{
 h4{
   font-size: calc(10px + 2vmin);
   vertical-align: middle;
+}
+
+.top-buffer{
+  margin-top: 34vh;
+  font-family: 'Montserrat Alternates', sans-serif;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
-import '../gamepanel/gamepanel.css';
+import './gamepanel.css';
 import LineChart from '../linechart/linechart.js';
+require("typeface-montserrat-alternates");
 
 class GamePanel extends React.Component{
     
@@ -26,15 +27,26 @@ class GamePanel extends React.Component{
 
     tick = () => {
         const oldvalue = this.state.datavalue;
+
+        //create first case at beginning
+        if(this.state.datadays === 0)
+        {
+            this.setState({datavalue: 1});
+        }
+
+        // Update active number of cases
         this.setState({
             oldvalue: this.state.datavalue,
-            datavalue: (1 + this.state.datavalue*(1+this.state.slope)),
+            datavalue: (this.state.datavalue*(1+this.state.slope)),
         });
 
+        // calculate daily cases and adjust slope so it's always minimally increasing
         this.setState({
             dailycases: this.state.datavalue - this.state.oldvalue,
+            slope: this.state.slope + 0.0005,
         });
 
+        // update maximum cases
         if(this.state.datavalue > this.state.datamax)
         {
             this.setState({
@@ -42,12 +54,14 @@ class GamePanel extends React.Component{
             });
         }
 
+        // update days remaining until vaccine is available
         if(this.state.daysvaccine > 0)
         {
             this.setState({daysvaccine: this.state.daysvaccine - 1});
         }
 
-        if(this.state.datavalue > Number(20000000))
+        // If user gets to 20,000,000 deaths, stop game  
+        if((this.state.datamax/20) > Number(20000000))
         {
             clearInterval(this.interval);
             alert("That's the worst epidemic in World's history ; that's why Public Health measures are important!");
@@ -55,17 +69,19 @@ class GamePanel extends React.Component{
                 gameEnd: true
             });
         }
-
-        if(this.state.datadays < 360){
+        // after a year, stop game and clock back to zero days
+        if(this.state.datadays < 365){
             this.setState({
-                datadays : this.state.datadays + 1
+                datadays : this.state.datadays + 1,
             });
 
         }
         else {
             clearInterval(this.interval);
             this.setState({
-                datadays : 0
+                datadays : 0,
+                countOn: false,
+                resetGraph: true,
             });
         }
     }
@@ -111,11 +127,21 @@ class GamePanel extends React.Component{
     }
 
     stayHome = () => {
-      
-        this.setState(
-            {slope: 0.92*this.state.slope}
-        );
-
+        
+        if(this.state.slope > 0.001)
+        {
+            this.setState(
+                {slope: 0.92*this.state.slope}
+            );
+    
+        }
+        else
+        {
+            this.setState(
+                {slope: this.state.slope - 0.0005}
+            );
+        }
+        
     }
 
     wearMask = () => {
@@ -127,7 +153,7 @@ class GamePanel extends React.Component{
 
     vaccine = () => {
         this.setState(
-            {slope: this.state.slope - 0.005}
+            {slope: this.state.slope - 0.008}
         );
     }
 
@@ -146,8 +172,16 @@ class GamePanel extends React.Component{
                 </div>
                 
             </div>
-            <div id="#linechart" className="row justify-content-center"><LineChart name={this.state.datadays} value={this.state.datavalue} resetState={this.state.resetGraph}/></div>
+            <div id="#linechart" className="row justify-content-center">
+                <LineChart name={this.state.datadays} value={this.state.datavalue} resetState={this.state.resetGraph}/>
+            </div>
 
+            <div id="#datainfo" className="row justify-content-center">
+                <div className="col-5 text-center">
+                    <label>Days</label>
+                </div>
+                
+            </div>
             <div id="#datainfo" className="row justify-content-center">
                 <div className="col-1">
 
@@ -197,12 +231,10 @@ class GamePanel extends React.Component{
                 <div className="col-1">
 
                 </div>
-                <div className="col-5 text-center">
-                    <label>Public Health Actions :</label>
+                <div className="col-10 text-center">
+                    <label>Public Health Actions : Click repeatedly to see effect on propagation curve</label>
                 </div>
-                <div className="col-5 text-center">
-                    
-                </div>
+                
                 <div className="col-1">
 
                 </div>

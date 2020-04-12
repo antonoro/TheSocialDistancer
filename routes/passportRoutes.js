@@ -35,7 +35,17 @@ router.get('/profile',
         email: req.body.email,
         password: req.body.confirmpassword
       };
-      mu.addUser(user).then(res.redirect("/"));
+      mu.verifyNewUser(user).then(bool => {
+        if(bool === false)
+        {
+          res.redirect('/fail');
+          console.log("Username or email are not available. Enter different credentials.");
+        }
+        else{
+          res.redirect('/');
+          console.log("Bla bla");
+        }
+      });
     }
   );
 

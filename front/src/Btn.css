@@ -49,7 +49,7 @@
 .Btn-header {
   font-family: 'Montserrat Alternates', sans-serif;
   background-color: whitesmoke;
-  min-height: 50vh;
+  max-height: 50vh;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 1vmin);

@@ -15,14 +15,19 @@
 
 }
 
+.btn {
+    margin-bottom: 1em;
+}
+
 .gamepanel {
     background-color: whitesmoke;
-    min-height: 100vh;
+    font-family: 'Montserrat Alternates', sans-serif;
+    min-height: 90vh;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 1vmin);
+    font-size: calc(7px + 1vmin);
     color: black;
     padding-top: 2em;
-    padding-right: 4em;
-    padding-left: 4em;
+    padding-right: 2em;
+    padding-left: 2em;
 }

@@ -3,6 +3,7 @@ import mainlogo from './logo_emptybackground.png';
 import UserLogIn from './LogIn';
 import TopHeader from './topheader/topheader.js';
 import GamePanel from './gamepanel/gamepanel.js';
+import "typeface-montserrat-alternates";
 import './App.css';
 import "typeface-dosis";
 import 'jquery/dist/jquery.min.js';
@@ -61,8 +62,17 @@ class Welcome extends React.Component {
                   <UserLogIn />
               </div>
             </div>   
-            : <div className="row justify-content-center">
-                <GamePanel />
+            : <div className="row">
+                <div className="col-2">
+                  <div className="row justify-content-end top-buffer">
+                    <h5 className="rotated">Active COVID-19 cases</h5>
+                  </div>
+                </div>
+                <div className="col-8">
+                  <GamePanel />
+                </div>
+                <div className="col-2">
+                </div>
               </div>
             }
               
