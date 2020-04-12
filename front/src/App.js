@@ -4,8 +4,11 @@ import UserLogIn from './LogIn';
 import TopHeader from './topheader/topheader.js';
 import GamePanel from './gamepanel/gamepanel.js';
 import './App.css';
-
 import "typeface-dosis";
+import 'jquery/dist/jquery.min.js';
+import 'popper.js/dist/popper.js';
+import 'bootstrap/dist/js/bootstrap.min.js';
+
 
 
 
