@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './Btn.css';
 import "typeface-montserrat-alternates";
 import SignUpForm from "./signupForm/signupform.js";

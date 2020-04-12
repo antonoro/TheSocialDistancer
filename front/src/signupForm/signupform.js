@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import "../signupForm/signupform.css";
 
 class SignUpForm extends React.Component{

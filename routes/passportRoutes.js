@@ -1,14 +1,8 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-const axios = require('axios');
 
 const mu = require("../db/MongoUtils.js");
-
-router.get('/login',
-  function(req, res){
-    res.render('login');
-  });
   
 router.post('/login', 
   passport.authenticate('local', { failureRedirect: '/' }),
@@ -16,17 +10,6 @@ router.post('/login',
     res.redirect('/');
   });
 
-router.get('/guest', 
-  function(req, res){
-
-    const userdata = {
-      username: 'guest', 
-      email: 'guest@guest.com', 
-      password: 'guest1'
-    };
-    res.redirect('/', { user: userdata });
-  }
-);  
   
 router.get('/logout',
   function(req, res){
