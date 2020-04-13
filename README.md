@@ -54,9 +54,15 @@ This project is made by Antoine Noreau, for the Web Developement Class at Univer
 
 Antoine Noreau // https://github.com/antonoro
 
-## 4: Screenshot of main page
+## 4: Screenshots of project
 
-ADD SCREENSHOT
+Log in page: 
+
+<img src="./Screenshot1.png" alt="Screenshot of log in (landing) page">
+
+Game panel:
+
+<img src="./Screenshot2.png" alt="Screenshot of game panel">
 
 ## 5: Licence
 

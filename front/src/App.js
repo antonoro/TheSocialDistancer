@@ -23,6 +23,7 @@ class Welcome extends React.Component {
     
   }
 
+  // get user state to know which display to render
   componentDidMount(){
     console.log("getUser");
     fetch("/getUser")

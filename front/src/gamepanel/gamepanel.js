@@ -240,22 +240,23 @@ class GamePanel extends React.Component{
                 </div>
             </div>
             <div id="#actionsrow" className="row justify-content-center">    
-                    <div className="col-3">
-                        <button onClick={this.stayHome} className="btn btn-warning btn-md btn-block">Stay home</button>
-                    </div>
-                    <div className="col-3">
-                        <button onClick={this.wearMask} className="btn btn-warning btn-md btn-block">Wear mask</button>
-                    </div>
-                    <div className="col-3">
-                        <button onClick={this.washHands} className="btn btn-warning btn-md btn-block">Wash hands</button>
-                    </div>
-                    <div className="col-3">
-                        { this.state.daysvaccine > 0 ?  
-                            <button  onClick={this.vaccine} className="btn btn-dark btn-md btn-block" disabled>Vaccine</button>
-                        :
-                            <button  onClick={this.vaccine} className="btn btn-info btn-md btn-block">Vaccine</button>
-                        }
-                    </div>
+                    
+                <div className="col-3">
+                    <button onClick={this.wearMask} className="btn btn-warning btn-md btn-block">Wear mask</button>
+                </div>
+                <div className="col-3">
+                    <button onClick={this.washHands} className="btn btn-warning btn-md btn-block">Wash hands</button>
+                </div>
+                <div className="col-3">
+                    <button onClick={this.stayHome} className="btn btn-warning btn-md btn-block">Stay home</button>
+                </div>
+                <div className="col-3">
+                    { this.state.daysvaccine > 0 ?  
+                        <button  onClick={this.vaccine} className="btn btn-dark btn-md btn-block" disabled>Vaccine</button>
+                    :
+                        <button  onClick={this.vaccine} className="btn btn-info btn-md btn-block">Vaccine</button>
+                    }
+                </div>
             </div>
         </div>
         );
