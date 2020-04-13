@@ -25,7 +25,7 @@ After cloning the project repository to a local folder, you'll need to install t
 
 - Node.js : You'll absolutely need this Javascript runtime, since everything server-side is based upon it. I recommend using yarn to download all pacakages, as its compatibility is better than npm with React. Either use npm install or yarn install to add all needed Node packages to the project.
 
-- MongoDB : You won't need to manage your own database to run this project as it uses a cloud-based MongoDB Atlas server. Using yarn, adding mongodb to your project is fairly easy, if you want to develop your own local DB. I suggest downloading MongoDB Compass, which provides an intuitive UI to manage database creations and content. 
+- MongoDB : Using yarn, adding mongodb to your project is fairly easy to develop your own DB. I suggest downloading MongoDB Compass, which provides an intuitive UI to manage database creations and content. You'll need a DB called 'TheSocialDistancerData' and a collection called 'users'. In there, I use documents with fields username, email and password. For now, passwords aren't hashed.
 
 You will of course need a web browser, such as Firefox, to load the front-end part of our project. Finally, to use and modify the project for personal use, you'll need a text/code editor, such as Visual Studio Code or SublimeText.  
 
@@ -40,10 +40,10 @@ yarn install
 
 ### 2.3: How to launch
 
-I added nodemon to relaunch the project after every change, so using yarn start works fine.
+I added nodemon to relaunch the project after every change in dev mode (the deployed version needs standard node), using this command:
 
 ```
-yarn start
+yarn start:dev
 ```
 
 Navigate to localhost:3001 on your web browser and enjoy my app!
@@ -52,7 +52,9 @@ Navigate to localhost:3001 on your web browser and enjoy my app!
 
 This project is made by Antoine Noreau, for the Web Developement Class at Universidad de Los Andes, Colombia. 
 
-Antoine Noreau // https://github.com/antonoro
+Antoine Noreau // https://antonoro.github.io
+
+Link to my github profile: https://github.com/antonoro
 
 ## 4: Screenshots of project
 
