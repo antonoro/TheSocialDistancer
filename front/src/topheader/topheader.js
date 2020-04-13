@@ -35,10 +35,9 @@ class TopHeader extends React.Component{
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
                                     { (!this.props.loggedin) ? 
-                                        <form action="/login" method="post">
+                                        <form action="/login" method="post"> 
                                             <input type="hidden" className="form-control" name="username" value="guest"required></input>
                                             <input type="hidden" className="form-control" name="password" value="guest1" required></input>
-                                            <button type="submit" className="btn btn-outline-success">Play as Guest</button>
                                         </form>
                                         
                                     : 
@@ -46,7 +45,7 @@ class TopHeader extends React.Component{
                                     }
                                 </li>
                                 <li className="nav-item">
-                                    <a class="nav-link" href="/">About</a>
+                                    <a class="nav-link" href="https://antonoro.github.io">About the author</a>
                                 </li>
                                 <li className="nav-item">
                                     <a class="nav-link  active" href="/logout">{this.props.logname}</a>

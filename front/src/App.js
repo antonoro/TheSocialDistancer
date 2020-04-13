@@ -55,7 +55,12 @@ class Welcome extends React.Component {
                 <div className="App-header">
                   <img src={mainlogo} className="App-logo" alt="logo" />
                   <h1>Welcome to The Social Distancer!</h1>
-                  <h2>A game where you make a difference and save lives</h2> 
+                  <h2>A game where you make a difference and save lives</h2>
+                  <form action="/login" method="post"> 
+                    <input type="hidden" className="form-control" name="username" value="guest"required></input>
+                    <input type="hidden" className="form-control" name="password" value="guest1" required></input>
+                    <button type="submit" className="btn btn-outline-success">Play as Guest</button>
+                  </form> 
                 </div>
               </div>
               <div className="row justify-content-center">  
