@@ -1,10 +1,12 @@
 const MongoClient = require("mongodb").MongoClient;
+const dotenv = require('dotenv');
 
 function MongoUtils(){
 
     const dbName = "TheSocialDistancerData";
     const mu = {};
-    url = "mongodb+srv://user1:user1test@cluster0-87q2z.gcp.mongodb.net/test?retryWrites=true&w=majority";
+    dotenv.config();
+    const url = process.env.MONGO_URI;
 
     mu.connect = () => {
         client = new MongoClient(url, {useUnifiedTopology: true});
