@@ -6,7 +6,7 @@ require("typeface-montserrat-alternates");
 class GamePanel extends React.Component{
     
     constructor(props){
-        super();
+        super(props);
         this.state = {
             datadays: 0,
             datavalue: 0,
@@ -17,7 +17,8 @@ class GamePanel extends React.Component{
             countOn: false,
             resetGraph: false,
             gameEnd: false, 
-            slope: 0.2
+            slope: 0.2,
+            username: this.props.username,
         };
     }
 
@@ -258,6 +259,20 @@ class GamePanel extends React.Component{
                     }
                 </div>
             </div>
+            { this.state.countOn === false ?
+            <div id="#actionsrow" className="row justify-content-center">         
+                <form action="/savegame" method="post"> 
+                    <input type="hidden" className="form-control" name="username" value={this.state.username} required></input>
+                    <input type="hidden" className="form-control" name="gamescore" value={this.state.datamax} required></input>
+                    <button type="submit" className="btn btn-secondary">Save Game</button>
+                </form>
+            </div>
+            :
+            <div>
+            </div>
+
+            }
+           
         </div>
         );
     }

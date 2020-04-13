@@ -21,6 +21,13 @@ function MongoUtils(){
 
     });
 
+    mu.addGameData = (usergamedata) =>
+    mu.connect().then(client =>{
+        console.log("Adding user Game data to MongoDB");
+        const usersCollection = client.db(dbName).collection('GameData'); 
+        return usersCollection.insertOne(usergamedata).finally(() => client.close());
+    });
+
     mu.verifyNewUser = (user, cb) => 
     mu.connect().then(client => {
         console.log("Verifying that username and email isn't in DB");

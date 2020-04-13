@@ -75,7 +75,7 @@ class Welcome extends React.Component {
                   </div>
                 </div>
                 <div className="col-8">
-                  <GamePanel />
+                  <GamePanel username={this.state.userState.username} />
                 </div>
                 <div className="col-2">
                 </div>

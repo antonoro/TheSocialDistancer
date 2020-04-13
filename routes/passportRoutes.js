@@ -21,6 +21,14 @@ router.get('/logout',
     return res.json(req.user || null);
   });
 
+  router.post('/savegame', 
+    function(req, res){
+      console.log('received post from savegame with username: ', req.body.username);
+      mu.addGameData(req.body);
+      res.redirect('/');
+    }
+  );
+
   router.post('/register', 
     function(req,res){
       console.log('received post from register with username: ', req.body.username);
