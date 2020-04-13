@@ -41,12 +41,10 @@ class SignUpForm extends React.Component{
             .then(valid => {
                 if(!valid)
                 {
-                    console.log("Value of valid is", valid);
                     alert("Username or email is already registered. Choose different credentials.")
                     this.render();
                 }
                 else{
-                    console.log("Value of valid is", valid);
                     alert("Account created. Please login.");
                     this.render();
                 }

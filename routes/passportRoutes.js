@@ -17,19 +17,12 @@ router.get('/logout',
     res.redirect('/');
   });
 
-router.get('/profile',
-  require('connect-ensure-login').ensureLoggedIn(),
-  function(req, res){
-    res.render('profile', { user: req.user });
-  });
-
   router.get('/getUser', (req, res) => {
     return res.json(req.user || null);
   });
 
   router.post('/register', 
     function(req,res){
-      console.log('req is: ', req.body)
       console.log('received post from register with username: ', req.body.username);
       const user = {
         username: req.body.username, 
