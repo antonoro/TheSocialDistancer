@@ -29,23 +29,24 @@ router.get('/profile',
 
   router.post('/register', 
     function(req,res){
+      console.log('req is: ', req.body)
       console.log('received post from register with username: ', req.body.username);
       const user = {
         username: req.body.username, 
         email: req.body.email,
         password: req.body.confirmpassword
       };
-      mu.verifyNewUser(user).then(bool => {
-        if(bool === false)
+      mu.verifyNewUser(user, (answer) => {
+        if(answer === null)
         {
-          res.redirect('/fail');
-          console.log("Username or email are not available. Enter different credentials.");
+          res.json(null);
+          console.log("From router: Username or email are not available. Enter different credentials.");
         }
         else{
-          res.redirect('/');
-          console.log("Bla bla");
+          res.json({valid: true});
+          console.log("From router: Account available");
         }
-      });
+      })
     }
   );
 

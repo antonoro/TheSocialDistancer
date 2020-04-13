@@ -19,22 +19,24 @@ function MongoUtils(){
 
     });
 
-    mu.verifyNewUser = (user) => 
+    mu.verifyNewUser = (user, cb) => 
     mu.connect().then(client => {
         console.log("Verifying that username and email isn't in DB");
         const usersCollection = client.db(dbName).collection('users');
         usersCollection.find({ $or: [{"username": user.username}, {"email": user.email}]}).limit(1).toArray()
         .then(userreturned => {
-            console.log(userreturned[0]);
+            console.log("User returned:", userreturned[0]);
+            client.close();
             if(userreturned[0] !== undefined)
             {
                 console.log("Passed as not undefined. User already exists.");
-                return false;
+                return cb(null);
             }
             else{
                 console.log("Passed as undefined. New user.");
                 mu.addUser(user);
-                return true;
+                const valid = true;
+                return cb(valid);
             }
         });
     });

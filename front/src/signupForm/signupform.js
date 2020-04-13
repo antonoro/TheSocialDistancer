@@ -17,6 +17,8 @@ class SignUpForm extends React.Component{
     }
 
     handleSubmit = (event) => {
+        event.preventDefault();
+        
         const { newpassword, confirmpassword } = this.state;
         if (newpassword !== confirmpassword) {  
             event.preventDefault();
@@ -30,13 +32,32 @@ class SignUpForm extends React.Component{
             this.render();
         }
         else{
+            fetch('/register', 
+            {
+                method: 'POST', 
+                body: JSON.stringify({username: `${this.state.username}`,email: `${this.state.email}`, confirmpassword: `${this.state.confirmpassword}`}),
+                headers: { 'Content-Type': 'application/json' },
+            }).then(res => res.json())
+            .then(valid => {
+                if(!valid)
+                {
+                    console.log("Value of valid is", valid);
+                    alert("Username or email is already registered. Choose different credentials.")
+                    this.render();
+                }
+                else{
+                    console.log("Value of valid is", valid);
+                    alert("Account created. Please login.");
+                    this.render();
+                }
 
+            });
         }
     }
 
     render(){
         return(
-        <form action="/register" method="post">
+        <form id="#signupForm" onSubmit={this.handleSubmit}>
             <div className="form-group">
                 <label>Username:</label>
                 <input type="text" class="form-control" name="username" onChange={this.handleInputChange} value={this.state.username} required></input>
@@ -56,7 +77,7 @@ class SignUpForm extends React.Component{
             </div>
             <div className="row justify-content-center">    
                 <div className="col-6">
-                    <button id="loginbtn" onClick={this.handleSubmit} type="submit" class="btn btn-primary btn-md btn-block">Register</button>
+                    <button id="loginbtn" type="submit" class="btn btn-primary btn-md btn-block">Register</button>
                 </div>
             </div>
         </form>
