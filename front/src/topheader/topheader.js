@@ -2,6 +2,7 @@ import React from 'react';
 import mainlogo from '../logo_emptybackground.png';
 import "../topheader/topheader.css";
 import "bootstrap/js/src/collapse.js";
+import {Navbar, Nav, Container} from "react-bootstrap"
 
 class TopHeader extends React.Component{
 
@@ -24,14 +25,12 @@ class TopHeader extends React.Component{
         const classTwo = collapse ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
         return (
             <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <div className="container">
+                <Navbar className="navbar navbar-expand-lg navbar-light bg-light">
+                    <Container>
                         <img id="toplogo" src={mainlogo} alt="Main logo"></img>
-                        <a className="navbar-brand" href="/">The Social Distancer</a>
-                        <button onClick={this.toggleNavBar} className={`${classTwo}`} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div className={`${classOne}`} id="navbarSupportedContent">
+                        <Navbar.Brand href="/">The Social Distancer</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
+                        <Navbar.Collapse id="basic-navbar-nav">
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
                                     { (!this.props.loggedin) ? 
@@ -45,15 +44,15 @@ class TopHeader extends React.Component{
                                     }
                                 </li>
                                 <li className="nav-item">
-                                    <a class="nav-link" href="https://antonoro.github.io">About the author</a>
+                                    <Nav.Link href="https://antonoro.github.io">About the author</Nav.Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a class="nav-link  active" href="/logout">{this.props.logname}</a>
+                                    <Nav.Link className="active" href="/logout">{this.props.logname}</Nav.Link>
                                 </li>
                             </ul>
-                        </div>
-                    </div>
-                </nav>
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
             </div>
         );
     }
