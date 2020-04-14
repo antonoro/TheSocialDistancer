@@ -1,4 +1,4 @@
-var records = [
+const records = [
     { id: 1, username: 'antonoro', password: 'antonoro', displayName: 'Antonoro', emails: [ { value: 'antonoro@antonoro.com' } ] }
   , { id: 2, username: 'jill', password: 'birthday', displayName: 'Jill', emails: [ { value: 'jill@example.com' } ] }
 ];
@@ -7,7 +7,7 @@ var records = [
 
 exports.findById = function(id, cb) {
   process.nextTick(function() {
-    var idx = id - 1;
+    const idx = id - 1;
     if (records[idx]) {
       cb(null, records[idx]);
     } else {
@@ -16,14 +16,11 @@ exports.findById = function(id, cb) {
   });
 }
 
+//This can be done easily with Array.prototype.filter
 exports.findByUsername = function(username, cb) {
   process.nextTick(function() {
-    for (var i = 0, len = records.length; i < len; i++) {
-      var record = records[i];
-      if (record.username === username) {
-        return cb(null, record);
-      }
-    }
-    return cb(null, null);
+      const filteredArray = records.filter(record => record.username === username);
+      //Assuming that the username is unique, the record will be in [0] if exists, null if doesn't.
+      return cb(null, filteredArray[0] || null);
   });
 }
