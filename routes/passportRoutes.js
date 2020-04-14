@@ -31,11 +31,13 @@ router.get('/logout',
 
   router.post('/register', 
     function(req,res){
-      console.log('received post from register with username: ', req.body.username);
+      //deconstruct req.body
+      const {username, email, confirmpassword} = req.body;
+      console.log('received post from register with username: ', username);
       const user = {
-        username: req.body.username, 
-        email: req.body.email,
-        password: req.body.confirmpassword
+        username, 
+        email,
+        password: confirmpassword
       };
       mu.verifyNewUser(user, (answer) => {
         if(answer === null)
