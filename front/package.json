@@ -18,7 +18,7 @@
     "popper.js": "^1.16.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "typeface-dosis": "^1.1.4",
     "typeface-montserrat-alternates": "0.0.72"
   },
